@@ -27,7 +27,7 @@ Inspired by the Nebula theme, created by **AuraNodesXAdvik**.
 ### 🔹 Tampermonkey (recommended)
 
 1. Install Tampermonkey extension
-2. [Click here to install the theme](https://raw.githubusercontent.com/aadi755/ptero-aura-theme/main/aura-loader.user.js)
+2. [Click here to install the theme](https://raw.githubusercontent.com/aadi755/aadi755-ptero-aura-theme/main/aura-loader.user.js)
 
 ---
 
