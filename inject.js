@@ -1,68 +1,106 @@
-// ==Aura Theme Enhancer==
-window.addEventListener('load', () => {
-  const sidebar = document.querySelector('.sidebar-nav');
-  if (!sidebar) return;
+// ==Aura Theme with Customization==
+(function () {
+  const savedColor = localStorage.getItem("aura_color") || "purple";
+  const footerText = localStorage.getItem("aura_footer") || "🚀 Powered by AuraNodesXAdvik";
 
-  // 🌌 Inject Player Manager Sidebar Link
-  const playersLink = document.createElement('a');
-  playersLink.href = '#';
-  playersLink.className = 'group flex items-center px-4 py-2 text-sm text-white hover:bg-purple-600 rounded transition';
-  playersLink.innerHTML = `
-    <svg class="mr-3 h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path d="M17 20h5v-2a4 4 0 0 0-5-4h-1m-4 6H7a4 4 0 0 1-4-4v-1a4 4 0 0 1 4-4h1m4 6v-4m0-4a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
-    </svg>
-    Players
-  `;
-  playersLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    showPlayerManager();
-  });
-  sidebar.appendChild(playersLink);
-});
+  const themeColors = {
+    purple: "#7c3aed",
+    blue: "#3b82f6",
+    green: "#10b981"
+  };
 
-// 🎮 Player Manager Page
-function showPlayerManager() {
-  const content = document.querySelector('#app');
-  if (!content) return;
+  const applyCustomStyles = () => {
+    const color = themeColors[savedColor] || themeColors.purple;
+    const style = document.createElement("style");
+    style.innerHTML = `
+      body {
+        font-family: 'Poppins', sans-serif !important;
+        background-color: #0d0d19 !important;
+      }
 
-  content.innerHTML = `
-    <div class="p-6 text-white font-poppins">
-      <h1 class="text-3xl font-bold mb-4">👥 Player Manager</h1>
-      <div class="bg-white bg-opacity-10 backdrop-blur-md p-4 rounded-xl shadow-xl overflow-auto">
-        <table class="min-w-full text-sm text-left">
-          <thead>
-            <tr class="border-b border-white/20 text-purple-300">
-              <th class="py-2">Player</th>
-              <th class="py-2">UUID</th>
-              <th class="py-2">IP</th>
-              <th class="py-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${generateFakePlayers(5)}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  `;
-}
+      .sidebar-nav a:hover {
+        background-color: ${color} !important;
+      }
 
-// 🔧 Fake Data Generator
-function generateFakePlayers(count) {
-  let html = '';
-  for (let i = 1; i <= count; i++) {
-    html += `
-      <tr class="hover:bg-purple-800/30 transition border-b border-white/10">
-        <td class="py-2">Player${i}</td>
-        <td class="py-2">uuid-000${i}</td>
-        <td class="py-2">192.168.0.${i}</td>
-        <td class="py-2 space-x-2">
-          <button class="bg-purple-600 hover:bg-purple-700 text-white py-1 px-3 rounded">Kick</button>
-          <button class="bg-red-600 hover:bg-red-700 text-white py-1 px-3 rounded">Ban</button>
-          <button class="bg-blue-600 hover:bg-blue-700 text-white py-1 px-3 rounded">Msg</button>
-        </td>
-      </tr>
+      .btn, .bg-purple-600 {
+        background-color: ${color} !important;
+      }
+
+      footer::after {
+        content: "${footerText}" !important;
+        display: block;
+        margin-top: 10px;
+        font-size: 12px;
+        color: #ccc;
+      }
     `;
-  }
-  return html;
-}
+    document.head.appendChild(style);
+  };
+
+  const injectSettingsPanel = () => {
+    const sidebar = document.querySelector('.sidebar-nav');
+    if (!sidebar) return;
+
+    const settingsLink = document.createElement('a');
+    settingsLink.href = '#';
+    settingsLink.className = 'group flex items-center px-4 py-2 text-sm text-white hover:bg-purple-600 rounded transition';
+    settingsLink.innerHTML = `
+      <svg class="mr-3 h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M12 8c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zm0 2c-2.21 0-4 1.79-4 4v2h8v-2c0-2.21-1.79-4-4-4z"/>
+      </svg>
+      Theme Settings
+    `;
+    settingsLink.onclick = (e) => {
+      e.preventDefault();
+      showSettingsModal();
+    };
+
+    sidebar.appendChild(settingsLink);
+  };
+
+  const showSettingsModal = () => {
+    if (document.getElementById("aura-settings-modal")) return;
+
+    const modal = document.createElement("div");
+    modal.id = "aura-settings-modal";
+    modal.innerHTML = `
+      <div class="fixed inset-0 z-[9999] bg-black/60 flex items-center justify-center font-poppins">
+        <div class="bg-[#1e1e2f] text-white p-6 rounded-xl w-[450px]">
+          <h2 class="text-2xl font-bold mb-4">🎨 Aura Theme Settings</h2>
+
+          <label class="block mb-2">Choose Theme Color</label>
+          <select id="themeColor" class="w-full p-2 rounded bg-[#2a2a40] text-white">
+            <option value="purple" ${savedColor === "purple" ? "selected" : ""}>Purple</option>
+            <option value="blue" ${savedColor === "blue" ? "selected" : ""}>Blue</option>
+            <option value="green" ${savedColor === "green" ? "selected" : ""}>Green</option>
+          </select>
+
+          <label class="block mt-4 mb-2">Custom Footer Text</label>
+          <input type="text" id="footerText" class="w-full p-2 rounded bg-[#2a2a40] text-white" value="${footerText}">
+
+          <div class="mt-6 flex justify-between">
+            <button onclick="document.getElementById('aura-settings-modal').remove()" class="px-4 py-2 bg-gray-600 hover:bg-gray-700 rounded">Cancel</button>
+            <button onclick="saveThemeSettings()" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded">Save</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  };
+
+  window.saveThemeSettings = () => {
+    const color = document.getElementById("themeColor").value;
+    const footer = document.getElementById("footerText").value;
+
+    localStorage.setItem("aura_color", color);
+    localStorage.setItem("aura_footer", footer);
+
+    alert("✅ Settings saved! Reloading...");
+    location.reload();
+  };
+
+  window.addEventListener("load", () => {
+    applyCustomStyles();
+    injectSettingsPanel();
+  });
+})();
