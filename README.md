@@ -1,0 +1,1 @@
+Aura Theme - Fully customizable and modern theme for Pterodactyl.
