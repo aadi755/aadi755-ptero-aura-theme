@@ -1,23 +1,46 @@
-# 🌌 Aura Theme - Custom Pterodactyl Theme
+# 🌌 Aura Theme for Pterodactyl
 
-![preview](preview.png)
+> A futuristic, fully customizable theme made for next-gen hosting panels — crafted with performance and aesthetics in mind.
 
-> A sleek, modern, and fully customizable Pterodactyl Panel theme — built for style, speed, and simplicity. Now with Blueprint support!
+![Preview](https://raw.githubusercontent.com/aadi755/aadi755-ptero-aura-theme/main/preview.png)
 
 ---
 
 ## ✨ Features
 
-- 🔮 Beautiful, minimal design
+- 🎮 Built-in Player Manager
 - 🎨 Fully customizable via `inject.js`
-- ⚙️ Blueprint support for one-command installs
-- 👥 Player Manager included
-- 🌐 Compatible with latest Pterodactyl versions
-- 🚀 Easy install via `install.sh`
+- 🧩 Blueprint support for easy installation
+- 📱 Responsive design (mobile + desktop)
+- ⚡️ Lightweight, fast loading
+- 🌈 Beautiful interface with purple/black/white theme
+- 🛠️ Works perfectly with AuraNodes hosting
 
 ---
 
-## 📦 One-Command Install
+## 🎨 What's Customizable?
+
+Edit the `inject.js` file to change:
+
+- ✅ Backgrounds (color, image)
+- ✅ Custom logo and favicon
+- ✅ Panel title and footer text
+- ✅ Button & hover styles
+- ✅ Fonts and spacing
+- ✅ Animations (enable/disable)
+- ✅ Navbar, sidebar, and card colors
+- ✅ Layout alignment
+
+---
+
+## 🔧 Installation via Blueprint
+
+### 1. Upload Files
+
+- Upload `aura-theme.blueprint` and `install.sh` into your panel root (`/var/www/pterodactyl`)
+
+### 2. Run Installer
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/aadi755/ptero-aura-theme/main/install.sh)
+cd /var/www/pterodactyl
+bash install.sh
