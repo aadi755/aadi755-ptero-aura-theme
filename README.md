@@ -1,46 +1,37 @@
-# 🌌 Aura Theme for Pterodactyl
+# 🌌 Aura Theme — A Fully Customizable Pterodactyl Theme
 
-> A futuristic, fully customizable theme made for next-gen hosting panels — crafted with performance and aesthetics in mind.
+Aura Theme is a **modern, stylish, and fully customizable** theme for the [Pterodactyl Panel](https://pterodactyl.io), designed to enhance your hosting experience with sleek visuals and simple controls.
 
-![Preview](https://raw.githubusercontent.com/aadi755/aadi755-ptero-aura-theme/main/preview.png)
-
----
-
-## ✨ Features
-
-- 🎮 Built-in Player Manager
-- 🎨 Fully customizable via `inject.js`
-- 🧩 Blueprint support for easy installation
-- 📱 Responsive design (mobile + desktop)
-- ⚡️ Lightweight, fast loading
-- 🌈 Beautiful interface with purple/black/white theme
-- 🛠️ Works perfectly with AuraNodes hosting
+![Preview](preview.png)
 
 ---
 
-## 🎨 What's Customizable?
+## 🚀 Features
 
-Edit the `inject.js` file to change:
-
-- ✅ Backgrounds (color, image)
-- ✅ Custom logo and favicon
-- ✅ Panel title and footer text
-- ✅ Button & hover styles
-- ✅ Fonts and spacing
-- ✅ Animations (enable/disable)
-- ✅ Navbar, sidebar, and card colors
-- ✅ Layout alignment
+- 🎨 Fully customizable UI (colors, fonts, logo, etc.)
+- 🧩 Built-in Player Manager
+- 📁 Clean and modern interface inspired by Nebula
+- 📦 Blueprint support for one-command install
+- ⚡ Lightweight and fast
 
 ---
 
-## 🔧 Installation via Blueprint
+## 📥 Installation
 
-### 1. Upload Files
+### 🔹 One-Command Blueprint Installation (Recommended)
 
-- Upload `aura-theme.blueprint` and `install.sh` into your panel root (`/var/www/pterodactyl`)
-
-### 2. Run Installer
+> Make sure you have the `aura-theme.blueprint` file uploaded in your panel directory (`/var/www/pterodactyl`).
 
 ```bash
+# 1. Go to your Pterodactyl directory
 cd /var/www/pterodactyl
-bash install.sh
+
+# 2. Install the Aura Theme blueprint
+php artisan p:themes:install aura-theme.blueprint
+
+# 3. Fix ownership/permissions
+chown -R www-data:www-data /var/www/pterodactyl
+
+# 4. Clear caches
+php artisan optimize:clear
+php artisan view:clear
