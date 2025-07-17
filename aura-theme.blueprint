@@ -1,0 +1,18 @@
+{
+  "name": "Aura Theme",
+  "description": "A fully customizable, modern Pterodactyl theme with Player Manager, animated UI, and sleek layout. High-performance, recommended for all panels.",
+  "author": "aadi755",
+  "version": "1.11",
+  "website": "https://github.com/aadi755/aadi755-ptero-aura-theme",
+  "discord": "https://discord.gg/xyajDdjGU8",
+  "style": {
+    "css": "/var/www/pterodactyl/resources/themes/Aura/auracss/auracss.css"
+  },
+  "scripts": {
+    "inject": "/var/www/pterodactyl/resources/themes/Aura/inject/inject.js"
+  },
+  "images": {
+    "preview": "https://raw.githubusercontent.com/aadi755/aadi755-ptero-aura-theme/main/preview.png"
+  },
+  "panel_version": ">=1.11"
+}
